@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  wat:
+    build: .
+    image: wat
+    container_name: WebAppTemplate
+    ports:
+      - "8000:80"
+    #environment:
+      #- ASPNETCORE_ENVIRONMENT=Development
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: root
+
+volumes:
+  db_data:
